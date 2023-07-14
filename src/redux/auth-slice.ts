@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface User {
   login: string;
@@ -22,21 +22,5 @@ const initialState: AuthState = {
 export const authSlice = createSlice({
   name: "@@auth",
   initialState,
-  reducers: {
-    loginStart: (state) => {
-      state.status = "loading";
-      state.error = null;
-    },
-    loginSuccess: (state, action: PayloadAction<User>) => {
-      state.status = "received";
-      state.isAuthenticated = true;
-      state.user = action.payload;
-      // Сохраняем данные об авторизации в localStorage
-      localStorage.setItem("authData", JSON.stringify(action.payload));
-    },
-    loginFailure: (state, action: PayloadAction<boolean>) => {
-      state.status = "rejected";
-      state.error = action.payload;
-    },
-  },
+  reducers: {},
 });
